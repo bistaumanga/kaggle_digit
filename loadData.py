@@ -21,7 +21,7 @@ class Data:
 		[[[X1, X2... Xn], [y]],
 		...
 		[[X1, X2... Xn], [y]]]
-		cumClasses not significant for regression'''
+		numClasses not significant for regression'''
 		
 		self.m = len(data)
 		self.X = np.transpose(np.matrix([data[i][0] \
@@ -34,6 +34,11 @@ class Data:
 
 		self.X = np.vstack((np.ones((1, self.m)), self.X))
 		self.n += 1
+
+	def normalize(self):
+		mu = np.mean(self.X, axis = 1)
+		sigma = np.std(self.X, axis = 1)
+		self.X = (self.X - mu)/ sigma
 
 	def getData(self):
 		return X, y
