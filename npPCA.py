@@ -34,4 +34,4 @@ def PCA(X, varRetained = 0.95, show = False):
 	U_reduced = U[:, : k]
 	Z = np.transpose(U_reduced) * X
 
-	return Z
+	return Z, U_reduced

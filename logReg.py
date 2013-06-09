@@ -30,8 +30,9 @@ def testLogReg(model, data, activation = sigmoid().h):
 def predictLogReg(model, X, activation = sigmoid().h):
 	return activation(np.transpose(X) * model) > 0.5
 
-def trainOneVsAllGD(data, act = sigmoid().h, epochs = 10000, lr = 0.5):
-	data.addBiasRow()
+def trainOneVsAllGD(data, act = sigmoid().h, \
+						epochs = 10000, lr = 0.5, Lambda = 0.0):
+
 	theta_init = np.matrix(np.zeros((data.n, 1)))
 	from functools import partial
 	from copy import deepcopy
@@ -42,9 +43,10 @@ def trainOneVsAllGD(data, act = sigmoid().h, epochs = 10000, lr = 0.5):
 		d2 = deepcopy(data)
 		d2.y = (data.y == k)
 		cost = partial(logRegCost,data = d2,theta = theta_init, \
-				regLambda = 0.001, activation = act)
+				regLambda = Lambda, activation = act)
 		J[k, :], model[:, k] = gradDesc(cost, theta_init, epochs, lr)
 	return model, J
 
 def predictMultiple(model, X, act = sigmoid().h):
+	print model.shape, X.shape
 	return np.argmax(act(np.transpose(X) * model), axis = 1)
