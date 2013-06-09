@@ -48,5 +48,4 @@ def trainOneVsAllGD(data, act = sigmoid().h, \
 	return model, J
 
 def predictMultiple(model, X, act = sigmoid().h):
-	print model.shape, X.shape
 	return np.argmax(act(np.transpose(X) * model), axis = 1)

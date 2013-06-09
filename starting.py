@@ -32,23 +32,20 @@ test.X = np.transpose(U_reduced) * test.X
 test.n = train.n
 train.addBiasRow()
 test.addBiasRow()
-np.savetxt("../sub/trainX.csv", train.X, delimiter=",", fmt = '%.4f')
-np.savetxt("../sub/testX.csv", test.X, delimiter = ",", fmt = '%.4f')
-np.savetxt("../sub/trainy.csv", train.y, delimiter = ",", fmt = '%d')
+
 #################################################################
 ######## TRAINING USING LOGISTIC REGRESSION #####################
-print train.m, train.n, train.K, train.X.shape, train.y.shape
-print test.m, test.n, test.K, test.X.shape
+
 print 'Training Started'
 act = Activation.sigmoid().h
-model, J = logReg.trainOneVsAllGD(train, act, epochs = 500, lr = 0.8, Lambda = 0.001)
+model, J = logReg.trainOneVsAllGD(train, act, epochs = 200, lr = 0.8, Lambda = 0.003)
 print 'Training Ended'
-np.savetxt("../sub/model.csv", model, delimiter = ",", fmt = '%.4f')
+
 import matplotlib.pyplot as plt
 plt.plot(np.transpose(J))
 plt.xlabel('epochs')
 plt.ylabel('Cost')
-np.savetxt("../sub/cost.csv", np.transpose(J), delimiter=",")
+
 plt.legend(['0','1', '2', '3', '4', '5', '6', '7', '8', '9'])
 plt.show()
 test_y = logReg.predictMultiple(model, test.X, act)
