@@ -42,7 +42,7 @@ test.addBiasRow()
 
 print 'Training Started'
 act = Activation.sigmoid().h
-model, J = logReg.trainOneVsAllGD(train, act, epochs = 200, lr = 0.8, Lambda = 0.003)
+model, J = logReg.trainOneVsAllGD(train, act, epochs = 500, lr = 0.5, Lambda = 0.01)
 print 'Training Ended'
 
 import matplotlib.pyplot as plt
@@ -56,5 +56,5 @@ plt.show()
 print 'Prediction for Test Data'
 test_y = logReg.predictMultiple(model, test.X, act)
 print 'Writing predictions to file'
-np.savetxt("../sub/logReg.csv", test_y, delimiter=",", fmt = '%d')
+np.savetxt("../../sub/logReg.csv", test_y, delimiter=",", fmt = '%d')
 print 'OutPut Written to File'
