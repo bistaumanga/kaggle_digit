@@ -7,9 +7,9 @@ knnData = np.array([row for row in knn])
 rf = csv.reader(open('../data/rf_benchmark.csv', 'rb'))
 rfData = np.array([row for row in rf])
 
-op = csv.reader(open('../sub/svm.csv', 'rb'))
+op = csv.reader(open('../sub/logReg.csv', 'rb'))
 data = np.array([row for row in op])
 
 compKnn = knnData == data
 compRf = rfData == data
-print np.sum(compKnn)/ 28000.0, np.sum(compRf)/ 28000.0 
+print np.sum(compKnn)/ 28000.0, np.sum(compRf)/ 28000.0
