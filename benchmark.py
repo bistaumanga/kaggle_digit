@@ -7,7 +7,7 @@ knnData = np.array([row for row in knn])
 rf = csv.reader(open('../data/rf_benchmark.csv', 'rb'))
 rfData = np.array([row for row in rf])
 
-op = csv.reader(open('../sub/logReg.csv', 'rb'))
+op = csv.reader(open('../sub/svm2.csv', 'rb'))
 data = np.array([row for row in op])
 
 compKnn = knnData == data
